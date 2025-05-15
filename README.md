@@ -1,15 +1,21 @@
-# ai-sdk-openapi
+# DEG Agentic
 
-To install dependencies:
+### Install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+### Run dev
 
 ```bash
-bun run index.ts
+bun run dev
 ```
 
-This project was created using `bun init` in bun v1.2.5. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+### Run in AWS lambda
+
+[Docs for Hono Lambda Deployment](https://hono.dev/docs/getting-started/aws-lambda)
+
+```bash
+cdk deploy
+```

@@ -1,6 +1,6 @@
 {
-  "name": "ai-sdk-openapi",
-  "description": "Beckn Protocol Client for Typescript",
+  "name": "deg-agentic",
+  "description": "Digital Energy Grid Agentic Server",
   "module": "index.ts",
   "version": "1.0.0",
   "type": "module",
@@ -13,7 +13,8 @@
     "@redocly/cli": "^1.34.3",
     "@types/bun": "latest",
     "@types/node": "latest",
-    "bun-plugin-dts": "^0.3.0"
+    "bun-plugin-dts": "^0.3.0",
+    "esbuild": "^0.25.4"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
