@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DEG Sandbox Beckn  - Developer Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://{{base_url}}"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Connection"
+    },
+    {
+      "name": "Subsidy"
+    },
+    {
+      "name": "DFP"
+    },
+    {
+      "name": "Solar-Retail"
+    },
+    {
+      "name": "Solar-Service"
+    }
+  ],
+  "paths": {
+    "/search": {
+      "post": {
+        "tags": [
+          "Solar-Service"
+        ],
+        "summary": "Search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "context": {
+                    "domain": "deg:service",
+                    "action": "search",
+                    "location": {
+                      "country": {
+                        "code": "USA"
+                      },
+                      "city": {
+                        "code": "NANP:628"
+                      }
+                    },
+                    "version": "1.1.0",
+                    "bap_id": "{{bap_id}}",
+                    "bap_uri": "{{bap_uri}}",
+                    "bpp_id": "{{bpp_id}}",
+                    "bpp_uri": "{{bpp_uri}}",
+                    "transaction_id": "{{$randomUUID}}",
+                    "message_id": "{{$randomUUID}}",
+                    "timestamp": "{{$timestamp}}"
+                  },
+                  "message": {
+                    "intent": {
+                      "descriptor": {
+                        "name": "resi"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/select": {
+      "post": {
+        "tags": [
+          "Solar-Service"
+        ],
+        "summary": "Select",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "context": {
+                    "domain": "deg:service",
+                    "action": "select",
+                    "location": {
+                      "country": {
+                        "code": "USA"
+                      },
+                      "city": {
+                        "code": "NANP:628"
+                      }
+                    },
+                    "version": "1.1.0",
+                    "bap_id": "{{bap_id}}",
+                    "bap_uri": "{{bap_uri}}",
+                    "bpp_id": "{{bpp_id}}",
+                    "bpp_uri": "{{bpp_uri}}",
+                    "transaction_id": "{{$randomUUID}}",
+                    "message_id": "{{$randomUUID}}",
+                    "timestamp": "{{$timestamp}}"
+                  },
+                  "message": {
+                    "order": {
+                      "provider": {
+                        "id": "329"
+                      },
+                      "items": [
+                        {
+                          "id": "466"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/init": {
+      "post": {
+        "tags": [
+          "Solar-Service"
+        ],
+        "summary": "Init",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "context": {
+                    "domain": "deg:service",
+                    "action": "init",
+                    "location": {
+                      "country": {
+                        "code": "USA"
+                      },
+                      "city": {
+                        "code": "NANP:628"
+                      }
+                    },
+                    "version": "1.1.0",
+                    "bap_id": "{{bap_id}}",
+                    "bap_uri": "{{bap_uri}}",
+                    "bpp_id": "{{bpp_id}}",
+                    "bpp_uri": "{{bpp_uri}}",
+                    "transaction_id": "{{$randomUUID}}",
+                    "message_id": "{{$randomUUID}}",
+                    "timestamp": "{{$timestamp}}"
+                  },
+                  "message": {
+                    "order": {
+                      "provider": {
+                        "id": "329"
+                      },
+                      "items": [
+                        {
+                          "id": "466"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/confirm": {
+      "post": {
+        "tags": [
+          "Solar-Service"
+        ],
+        "summary": "Confirm",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "context": {
+                    "domain": "deg:service",
+                    "action": "confirm",
+                    "location": {
+                      "country": {
+                        "code": "USA"
+                      },
+                      "city": {
+                        "code": "NANP:628"
+                      }
+                    },
+                    "version": "1.1.0",
+                    "bap_id": "{{bap_id}}",
+                    "bap_uri": "{{bap_uri}}",
+                    "bpp_id": "{{bpp_id}}",
+                    "bpp_uri": "{{bpp_uri}}",
+                    "transaction_id": "{{$randomUUID}}",
+                    "message_id": "{{$randomUUID}}",
+                    "timestamp": "{{$timestamp}}"
+                  },
+                  "message": {
+                    "order": {
+                      "provider": {
+                        "id": "329"
+                      },
+                      "items": [
+                        {
+                          "id": "466"
+                        }
+                      ],
+                      "fulfillments": [
+                        {
+                          "id": "617",
+                          "customer": {
+                            "person": {
+                              "name": "Lisa"
+                            },
+                            "contact": {
+                              "phone": "876756454",
+                              "email": "LisaS@mailinator.com"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "post": {
+        "tags": [
+          "Solar-Service"
+        ],
+        "summary": "Status",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "context": {
+                    "domain": "deg:service",
+                    "action": "status",
+                    "location": {
+                      "country": {
+                        "code": "USA"
+                      },
+                      "city": {
+                        "code": "NANP:628"
+                      }
+                    },
+                    "version": "1.1.0",
+                    "bap_id": "{{bap_id}}",
+                    "bap_uri": "{{bap_uri}}",
+                    "bpp_id": "{{bpp_id}}",
+                    "bpp_uri": "{{bpp_uri}}",
+                    "transaction_id": "{{$randomUUID}}",
+                    "message_id": "{{$randomUUID}}",
+                    "timestamp": "{{$timestamp}}"
+                  },
+                  "message": {
+                    "order_id": "3774"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}

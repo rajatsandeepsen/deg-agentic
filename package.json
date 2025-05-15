@@ -1,0 +1,31 @@
+{
+  "name": "ai-sdk-openapi",
+  "description": "Beckn Protocol Client for Typescript",
+  "module": "index.ts",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run --hot --port=3000 ./index.ts",
+    "build": "bun build --outdir=dist --target=node-18 ./index.ts"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^1.34.3",
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "bun-plugin-dts": "^0.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^1.2.18",
+    "@ai-sdk/openai": "^1.3.22",
+    "ai": "^4.3.15",
+    "hono": "^4.7.9",
+    "openapi-fetch": "^0.14.0",
+    "openapi-typescript": "^7.8.0",
+    "postman-to-openapi": "^3.0.1",
+    "zod": "^3.24.4"
+  }
+}

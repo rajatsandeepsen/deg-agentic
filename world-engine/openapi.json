@@ -1,0 +1,445 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DEG World Engine - Developer Docs",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://{{base_url}}"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Utility",
+      "description": "All Endpoints related to Utilities"
+    },
+    {
+      "name": "Meter"
+    },
+    {
+      "name": "Energy Resource (House Hold)"
+    },
+    {
+      "name": "DER"
+    }
+  ],
+  "paths": {
+    "/utility/detailed": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "summary": "Get Utilities,Substation,Transformer Data",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/utility/reset": {
+      "put": {
+        "tags": [
+          "Utility"
+        ],
+        "summary": "Reset Data of World Engine",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/grid-loads": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "summary": "Get Grid Loads",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/meters": {
+      "post": {
+        "tags": [
+          "Meter"
+        ],
+        "summary": "Meter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "code": "METER003",
+                    "parent": null,
+                    "energyResource": null,
+                    "consumptionLoadFactor": 1,
+                    "productionLoadFactor": 0,
+                    "type": "SMART",
+                    "city": "San Francisco",
+                    "state": "California",
+                    "latitude": 37.7749,
+                    "longitude": -122.4194,
+                    "pincode": "94103"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Meter"
+        ],
+        "summary": "Get All Meters",
+        "parameters": [
+          {
+            "name": "pagination[page]",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "name": "pagination[pageSize]",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "100"
+          },
+          {
+            "name": "populate[0]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "parent"
+          },
+          {
+            "name": "populate[1]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "energyResource"
+          },
+          {
+            "name": "populate[2]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "children"
+          },
+          {
+            "name": "populate[3]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "appliances"
+          },
+          {
+            "name": "sort[0]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "children.code:desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/meters/5": {
+      "delete": {
+        "tags": [
+          "Meter"
+        ],
+        "summary": "Delete Meter",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/meters/8": {
+      "get": {
+        "tags": [
+          "Meter"
+        ],
+        "summary": "Get meter by id",
+        "parameters": [
+          {
+            "name": "populate[0]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "parent"
+          },
+          {
+            "name": "populate[1]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "children"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/meter-datasets/1361": {
+      "get": {
+        "tags": [
+          "Meter"
+        ],
+        "summary": "Meter Historical Data",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/energy-resources": {
+      "post": {
+        "tags": [
+          "Energy Resource (House Hold)"
+        ],
+        "summary": "Energy-Resource",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "name": "Jonathon's Home",
+                    "type": "CONSUMER",
+                    "meter": 160
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/energy-resources/1326": {
+      "get": {
+        "tags": [
+          "Energy Resource (House Hold)"
+        ],
+        "summary": "Energy-Resource Get By Id",
+        "parameters": [
+          {
+            "name": "populate[0]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "meter.parent"
+          },
+          {
+            "name": "populate[1]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "meter.children"
+          },
+          {
+            "name": "populate[2]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "meter.appliances"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Energy Resource (House Hold)"
+        ],
+        "summary": "Energy-Resource",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/der": {
+      "post": {
+        "tags": [
+          "DER"
+        ],
+        "summary": "Create DER",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "energy_resource": 1327,
+                  "appliance": 1
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/toggle-der/1781": {
+      "post": {
+        "tags": [
+          "DER"
+        ],
+        "summary": "Toggle DER Switching",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
