@@ -1,11 +1,10 @@
 import { tool } from "ai";
-import createClient from "openapi-fetch";
+import createClient, { type Client } from "openapi-fetch";
 import { z } from "zod";
 import type { paths as worldEnginePath } from "./type";
 
-const worldEngineClient = createClient<worldEnginePath>({
-    baseUrl: "https://api.worldEngine.com",
-});
+type WorldEngineClient = Client<worldEnginePath>;
+
 
 // --- Global Zod Schemas for static fields ---
 
@@ -61,7 +60,7 @@ const energyResourceByIdGetQueryStatic = {
     "populate[2]": z.literal("meter.appliances").optional(),
 };
 
-export const tools = (staticData: object, dynamicData: object) => ({
+export const tools = (worldEngineClient: WorldEngineClient, staticData: object, dynamicData: object) => ({
     // --- /meters POST ---
     createMeter: tool({
         description: "Create a new Meter.",
@@ -108,22 +107,27 @@ export const tools = (staticData: object, dynamicData: object) => ({
     }),
 
     // --- /meters/:id GET ---
-    getMeterById: tool({
-        description: "Get meter by ID.",
-        parameters: z.object({
-            id: z.number().describe("Meter ID."),
-        }),
-        execute: async (args) => {
-            const queryParams = {
-                "populate[0]": "parent",
-                "populate[1]": "children",
-            }
-            const staticParsed = z.object(meterByIdGetQueryStatic).partial().parse(staticData);
-            return await worldEngineClient.GET(`/meters/${args.id}`, {
-                params: { query: { ...staticParsed, ...dynamicData, ...queryParams } }
-            });
-        },
-    }),
+    // getMeterById: tool({
+    //     description: "Get meter by ID.",
+    //     parameters: z.object({
+    //         id: z.number().describe("Meter ID."),
+    //     }),
+    //     execute: async (args) => {
+    //         const queryParams = {
+    //             "populate[0]": "parent",
+    //             "populate[1]": "children",
+    //         }
+    //         const staticParsed = z.object(meterByIdGetQueryStatic).partial().parse(staticData);
+    //         return await worldEngineClient.GET("/meters/{id}", {
+    //             params: {
+    //                 query: { ...staticParsed, ...dynamicData, ...queryParams },
+    //                 path: {
+    //                     id: args.id,
+    //                 }
+    //             }
+    //         });
+    //     },
+    // }),
 
     // --- /energy-resources POST ---
     createEnergyResource: tool({
@@ -154,8 +158,12 @@ export const tools = (staticData: object, dynamicData: object) => ({
                 "populate[2]": "meter.appliances",
             }
             const staticParsed = z.object(energyResourceByIdGetQueryStatic).partial().parse(staticData);
-            return await worldEngineClient.GET(`/energy-resources/${args.id}`, {
-                params: { query: { ...staticParsed, ...dynamicData, ...queryParams } }
+            return await worldEngineClient.GET("/energy-resources/{id}", {
+                params: {
+                    query: { ...staticParsed, ...dynamicData, ...queryParams }, path: {
+                        id: args.id,
+                    }
+                }
             });
         },
     }),
@@ -168,8 +176,14 @@ export const tools = (staticData: object, dynamicData: object) => ({
         }),
         execute: async (args) => {
             // No static/dynamic schema for this endpoint
-            return await worldEngineClient.DELETE(`/energy-resources/${args.id}`, {});
-        },
+            return await worldEngineClient.DELETE("/energy-resources/{id}", {
+                params: {
+                    path: {
+                        id: args.id,
+                    },
+                }
+            });
+        }
     }),
 
     // --- /der POST ---
@@ -195,7 +209,13 @@ export const tools = (staticData: object, dynamicData: object) => ({
         }),
         execute: async (args) => {
             // No static/dynamic schema for this endpoint
-            return await worldEngineClient.POST(`/toggle-der/${args.id}`, {});
+            return await worldEngineClient.POST("/toggle-der/{id}", {
+                params: {
+                    path: {
+                        id: args.id,
+                    }
+                }
+            });
         },
     }),
 
@@ -206,6 +226,58 @@ export const tools = (staticData: object, dynamicData: object) => ({
         execute: async () =>
             await worldEngineClient.PUT("/utility/reset", {}),
     }),
-});
+
+    // --- /utility/detailed GET ---
+    getUtilityDetailed: tool({
+        description: "Get Utilities, Substation, Transformer Data.",
+        parameters: z.object({}),
+        execute: async () => {
+            return await worldEngineClient.GET("/utility/detailed", {});
+        },
+    }),
+
+    // --- /grid-loads GET ---
+    getGridLoads: tool({
+        description: "Get Grid Loads.",
+        parameters: z.object({}),
+        execute: async () => {
+            return await worldEngineClient.GET("/grid-loads", {});
+        },
+    }),
+
+    // --- /meters/:id DELETE ---
+    deleteMeterById: tool({
+        description: "Delete Meter by ID.",
+        parameters: z.object({
+            id: z.number().describe("Meter ID."),
+        }),
+        execute: async (args) => {
+            return await worldEngineClient.DELETE("/meters/{id}", {
+                params: {
+                    path: {
+                        id: args.id,
+                    },
+                }
+            });
+        },
+    }),
+
+    // --- /meter-datasets/:id GET ---
+    getMeterDatasetById: tool({
+        description: "Get historical data for meter dataset by ID.",
+        parameters: z.object({
+            id: z.number().describe("Meter Dataset ID."),
+        }),
+        execute: async (args) => {
+            return await worldEngineClient.GET("/meter-datasets/{id}", {
+                params: {
+                    path: {
+                        id: args.id,
+                    },
+                }
+            });
+        },
+    }),
+})
 
 export default tools;

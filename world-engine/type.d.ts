@@ -281,11 +281,14 @@ export interface paths {
     /**
      * Delete Meter with id 5
      */
-    "/meters/5": {
+    "/meters/{id}": {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path?: {
+                /** The meter id (was 5 in original comment) */
+                id: number;
+            };
             cookie?: never;
         };
         get?: never;
@@ -296,7 +299,10 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The meter id (was 5 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: never;
@@ -320,11 +326,14 @@ export interface paths {
     /**
      * Get meter by id 8
      */
-    "/meters/8": {
+    "/meters/{id}": {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path?: {
+                /** The meter id (was 8 in original comment) */
+                id: number;
+            };
             cookie?: never;
         };
         /** Get meter by id */
@@ -332,7 +341,10 @@ export interface paths {
             parameters: {
                 query?: MeterByIdGetQuery;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The meter id (was 8 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: never;
@@ -359,11 +371,14 @@ export interface paths {
     /**
      * Get historical data for meter dataset 1361
      */
-    "/meter-datasets/1361": {
+    "/meter-datasets/{id}": {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path?: {
+                /** The meter dataset id (was 1361 in original comment) */
+                id: number;
+            };
             cookie?: never;
         };
         /** Meter Historical Data */
@@ -371,7 +386,10 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The meter dataset id (was 1361 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: never;
@@ -444,11 +462,14 @@ export interface paths {
     /**
      * Get or Delete Energy Resource by id 1326
      */
-    "/energy-resources/1326": {
+    "/energy-resources/{id}": {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path?: {
+                /** The energy resource id (was 1326 in original comment) */
+                id: number;
+            };
             cookie?: never;
         };
         /** Energy-Resource Get By Id */
@@ -456,7 +477,10 @@ export interface paths {
             parameters: {
                 query?: EnergyResourceByIdGetQuery;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The energy resource id (was 1326 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: never;
@@ -479,7 +503,10 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The energy resource id (was 1326 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: never;
@@ -546,11 +573,14 @@ export interface paths {
     /**
      * Toggle DER Switching for id 1781
      */
-    "/toggle-der/1781": {
+    "/toggle-der/{id}": {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path?: {
+                /** The DER id (was 1781 in original comment) */
+                id: number;
+            };
             cookie?: never;
         };
         get?: never;
@@ -560,7 +590,10 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path?: {
+                    /** The DER id (was 1781 in original comment) */
+                    id: number;
+                };
                 cookie?: never;
             };
             requestBody?: {
