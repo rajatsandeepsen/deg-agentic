@@ -19,14 +19,23 @@ import type { LanguageModel } from "ai";
 export type Env = ReturnType<typeof createEnvironment>;
 
 export type Variables = {
-	env: Env;
+    env: Env;
     model: LanguageModel
+    sandbox: {
+        staticData: BecknStaticContext;
+        client: Client;
+    };
+    worldEngine: {
+        staticData: object;
+        client: Client;
+    }
 };
 
 import type { Context } from "hono";
+import type { BecknStaticContext } from "./sandbox/tools";
 
 type Bindings = {
-	HOSTNAME: string;
+    HOSTNAME: string;
 };
 
 export type HonoType = { Bindings: Bindings; Variables: Variables };

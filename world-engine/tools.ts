@@ -60,7 +60,13 @@ const energyResourceByIdGetQueryStatic = {
     "populate[2]": z.literal("meter.appliances").optional(),
 };
 
-export const tools = (worldEngineClient: WorldEngineClient, staticData: object, dynamicData: object) => ({
+type Props = {
+    worldEngineClient: WorldEngineClient;
+    staticData: object;
+    dynamicData: object;
+}
+
+export const tools = ({dynamicData, staticData, worldEngineClient}: Props) => ({
     // --- /meters POST ---
     createMeter: tool({
         description: "Create a new Meter.",

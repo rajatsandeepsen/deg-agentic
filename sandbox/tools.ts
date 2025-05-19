@@ -86,8 +86,14 @@ const statusMessage = z.object({
     order_id: z.string().describe("Order ID to check status"),
 }).describe("Status message");
 
+type Props = {
+    sandboxClient: SandBoxClient, 
+    staticData: BecknStaticContext, 
+    dynamicData: Omit<BecknDynamicContext, "action">
+}
 // Tools object
-const tools = (sandboxClient: SandBoxClient, staticData: BecknStaticContext, dynamicData: Omit<BecknDynamicContext, "action">) => ({
+const tools = ({ dynamicData, sandboxClient, staticData }: Props) => ({
+
     searchProduct: tool({
         description: "Search for solar services.",
         parameters: z.object({
